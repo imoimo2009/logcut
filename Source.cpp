@@ -71,11 +71,13 @@ void clr_list(sBuffer *e) {
 	} while (n != e);
 }
 
+// 小文字のアルファベットを大文字にする
 char chr_ucase(char c) {
 	if (c >= 97 && c <= 122) c -= 32;
 	return c;
 }
 
+// 大文字のアルファベットを小文字にする
 char chr_lcase(char c) {
 	if (c >= 65 && c <= 90) c += 32;
 	return c;
@@ -146,14 +148,13 @@ int init_gvars(int argc,char **argv) {
 // フルパスからディレクトリ名を返す
 void dirname(char *d, const char *s) {
 	strcpy_s(d, STRING_MAX, s);
-	for (int i = strlen(d) - 1; i >= 0; i--) {
+	for (int i = (int)strlen(d) - 1; i >= 0; i--) {
 		if (d[i] == '\\') {
 			d[i] = '\0';
 			break;
 		}
 	}
 }
-
 
 // ディレクトリ名がない場合、カレントディレクトリをパスに追加する
 void get_path(char *str, const char *parent,const char *path) {
@@ -251,7 +252,7 @@ void print_usage(char *argv) {
 	char *p;
 
 	p = argv;
-	for (int i = strlen(argv) - 1; i >= 0; i--) {
+	for (int i = (int)strlen(argv) - 1; i >= 0; i--) {
 		if (argv[i] == '\\') {
 			p = &argv[i + 1];
 			break;
