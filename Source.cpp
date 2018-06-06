@@ -178,6 +178,7 @@ void get_path(char *str, const char *parent,const char *path) {
 sBuffer* exec_grep(sBuffer *b, const char *str, const char *key) {
 	char *p = NULL,*i = NULL,s[STRING_MAX];
 	int sc = 0,cnt = 0;
+
 	strcpy_s(s, STRING_MAX, key);
 	i = strtok_s(s, " ",&p);
 	do {
@@ -195,6 +196,7 @@ int search_exec(void) {
 	sBuffer *b;
 	char s[LINE_LENGTH],p[STRING_MAX];
 	int cnt = 0, sum = 0, line = 0, last = 0, start = 0;
+
 	get_path(p,NULL,gsInFile);
 	if (fopen_s(&fp,p, "r")) return 0;
 	b = sbList;
@@ -242,6 +244,7 @@ void print_list(FILE *fp,sBuffer *e) {
 void save_list(sBuffer *e) {
 	char p[STRING_MAX];
 	FILE *fp;
+
 	get_path(p,gsInFile,gsOutFile);
 	if (fopen_s(&fp, p, "w")) return;
 	print_list(fp, e);
